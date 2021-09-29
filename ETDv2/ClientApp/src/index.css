@@ -1,0 +1,112 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.main-log-view-page {
+  display: flex;
+  flex-direction: row;
+  height: 70vh;
+  background: #0f6674;
+}
+
+.main-logs-view {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100vw;
+}
+
+.item-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  padding: 4px;
+  background: #0f6674;
+}
+
+.item-bar:nth-child(even) {
+  background: #8fd19e;
+}
+
+.item-bar:hover {
+  transition: 0.4s ease-in-out;
+  background: #282c34;
+  color: #8fd19e;
+}
+
+.item-bar > * {
+  cursor: pointer;
+}
+
+.date-stamp {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.date-stamp p {
+  margin: 0;  
+}
+
+.log-title {
+  text-align: center;
+}
+
+.log-title h2 {
+  margin: 3px;
+}
+
+.log-icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.list-icon {
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 50%;
+}
+
+.list-description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30vw;
+  height: 100%;
+  background: #8fd19e;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+}
+
+.bar-name {
+  width: 30%;
+}
+
+.bar-description {
+  width: 40%;
+}
+
+.bar-timestamp {
+  width: 20%;
+}
+
+.bar-id {
+  width: 10%;
+}

@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace DomainModel.Model
+namespace ETDv2.DomainModel.Model
 {
     public class SourceInfo
     {
@@ -10,7 +9,7 @@ namespace DomainModel.Model
         public long SourceInfoId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public DateTime Timestamp { get; set; }
+        public string Timestamp { get; set; }
         public List<DataEventRecord> DataEventRecords { get; set; }
     }
 }

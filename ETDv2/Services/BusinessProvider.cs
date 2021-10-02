@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AspNetCoreMultipleProject;
-using DomainModel;
-using DomainModel.Model;
+using ETDv2.DomainModel.Model;
 using ETDv2.DomainModel;
 using ETDv2.ViewModels;
 
@@ -36,6 +34,18 @@ namespace ETDv2.Services
                     SourceInfoId = der.SourceInfo.SourceInfoId,
                     Timestamp = der.SourceInfo.Timestamp
                 },
+                Agent = der.Agent,
+                Link = der.Link,
+                SourceType = der.SourceType,
+                GoogleProduct = der.GoogleProduct,
+                TTP = der.TTP,
+                Topics = der.Topics,
+                TRA = der.TRA,
+                ReadyToLaunch = der.ReadyToLaunch,
+                Comments = der.Comments,
+                Uuid = der.Uuid,
+                TimestampEnd = der.TimestampEnd,
+                Uat = der.Uat
             });
 
             return results;
@@ -64,6 +74,18 @@ namespace ETDv2.Services
                     SourceInfoId = der.SourceInfo.SourceInfoId,
                     Timestamp = der.SourceInfo.Timestamp
                 },
+                Agent = der.Agent,
+                Link = der.Link,
+                SourceType = der.SourceType,
+                GoogleProduct = der.GoogleProduct,
+                TTP = der.TTP,
+                Topics = der.Topics,
+                TRA = der.TRA,
+                ReadyToLaunch = der.ReadyToLaunch,
+                Comments = der.Comments,
+                Uuid = der.Uuid,
+                TimestampEnd = der.TimestampEnd,
+                Uat = der.Uat
             };
 
             return result;
@@ -77,7 +99,19 @@ namespace ETDv2.Services
                 Description = value.Description,
                 Name = value.Name,
                 DataEventRecordId = value.DataEventRecordId,
-                SourceInfoId = value.SourceInfoId
+                SourceInfoId = value.SourceInfoId,
+                Agent = value.Agent,
+                Link = value.Link,
+                SourceType = value.SourceType,
+                GoogleProduct = value.GoogleProduct,
+                TTP = value.TTP,
+                Topics = value.Topics,
+                TRA = value.TRA,
+                ReadyToLaunch = value.ReadyToLaunch,
+                Comments = value.Comments,
+                Uuid = value.Uuid,
+                TimestampEnd = value.TimestampEnd,
+                Uat = value.Uat
             };
 
             if (value.SourceInfo != null)
@@ -100,6 +134,18 @@ namespace ETDv2.Services
                 Name = der.Name,
                 SourceInfoId = der.SourceInfoId,
                 DataEventRecordId = der.DataEventRecordId,
+                Agent = der.Agent,
+                Link = der.Link,
+                SourceType = der.SourceType,
+                GoogleProduct = der.GoogleProduct,
+                TTP = der.TTP,
+                Topics = der.Topics,
+                TRA = der.TRA,
+                ReadyToLaunch = der.ReadyToLaunch,
+                Comments = der.Comments,
+                Uuid = der.Uuid,
+                TimestampEnd = der.TimestampEnd,
+                Uat = der.Uat,
                 SourceInfo = new SourceInfoVm
                 {
                     Description = der.SourceInfo.Description,
@@ -120,7 +166,19 @@ namespace ETDv2.Services
                 Description = value.Description,
                 Name = value.Name,
                 DataEventRecordId = value.DataEventRecordId,
-                SourceInfoId = value.SourceInfoId
+                SourceInfoId = value.SourceInfoId,
+                Agent = value.Agent,
+                Link = value.Link,
+                SourceType = value.SourceType,
+                GoogleProduct = value.GoogleProduct,
+                TTP = value.TTP,
+                Topics = value.Topics,
+                TRA = value.TRA,
+                ReadyToLaunch = value.ReadyToLaunch,
+                Comments = value.Comments,
+                Uuid = value.Uuid,
+                Uat = value.Uat,
+                TimestampEnd = value.TimestampEnd,
             };
 
             if (value.SourceInfo != null)

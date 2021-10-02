@@ -1,9 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
+using ETDv2.ViewModels;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Sheets.v4;
 using Google.Apis.Sheets.v4.Data;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ETDv2.Services
 {
@@ -14,8 +17,9 @@ namespace ETDv2.Services
         static readonly string SpreadsheetId = "11oZULyz9s8tL6IBM-5DF5W9Duw3xKcoVjm76ojH_K6Q";
         private static readonly string sheet = "Logs";
         private static SheetsService service;
-
-        static void InitSheets()
+        
+        // private IEnumerable<DataEventRecordVm> result;
+        static void XlsInitialization()
         {
             GoogleCredential credential;
             using (var stream = new FileStream("client_secrets.json", FileMode.Open, FileAccess.Read))
@@ -31,7 +35,56 @@ namespace ETDv2.Services
             });
         }
 
-        static void ReadEntries()
+        public async Task<IEnumerable<DataEventRecordVm>> PopulateXls(BusinessProvider businessProvider)
+        {
+            XlsInitialization();
+            
+            var range = $"{sheet}!B:X";
+            var request = service.Spreadsheets.Values.Get(SpreadsheetId, range);
+
+            var response = request.Execute();
+            var values = response.Values;
+            
+            if (values != null && values.Count > 0)
+            {
+                foreach (var row in values)
+                {
+                    var result = new DataEventRecordVm
+                    {
+                        Timestamp = row[1].ToString(),
+                        Description = row[3].ToString(),
+                        Name = row[2].ToString(),
+                        // SourceInfoId = Convert.ToInt64(row[3]),
+                        // DataEventRecordId = Convert.ToString(row[20]),
+                        Agent = row[0].ToString(),
+                        Link = row[4].ToString(),
+                        SourceType = row[5].ToString(),
+                        GoogleProduct = row[6].ToString(),
+                        TTP = row[12].ToString(),
+                        Topics = row[14].ToString(),
+                        Uat = row[15].ToString(),
+                        TRA = row[16].ToString(),
+                        ReadyToLaunch = row[17].ToString(),
+                        Comments = row[18].ToString(),
+                        Uuid = row[20].ToString(),
+                        TimestampEnd = row[1].ToString(), // HAVE TO FIX IT HERE: 21 IS OUT OF RANGE EVEN INCREASING THE RANGE OF COLUMNS
+                        SourceInfo = new SourceInfoVm
+                        {
+                            Description = row[3].ToString(),
+                            Name = row[2].ToString(),
+                            // SourceInfoId = der.SourceInfo.SourceInfoId,
+                            Timestamp = row[1].ToString()
+                        }
+                    };
+                    
+                    await businessProvider.CreateDataEventRecord(result);
+                }
+            }
+            
+            return null;
+        }
+
+        public void ReadXlsEntries()
         {
             var range = $"{sheet}!A:X";
             var request = service.Spreadsheets.Values.Get(SpreadsheetId, range);
@@ -47,12 +100,12 @@ namespace ETDv2.Services
             }
         }
 
-        static void CreateEntry()
+        public void CreateXlsEntry(DataEventRecordVm result)
         {
-            var range = $"{sheet}!A:F";
+            var range = $"{sheet}!B:F";
             var valueRange = new ValueRange();
 
-            var objectList = new List<object>(); // have to add every column item as they'll compose the object to be inserted
+            var objectList = new List<object>() { result.Agent, result.Timestamp, result.Name, result.Description, result.Link, result.SourceType, result.GoogleProduct, result.TTP, result.Topics, result.Uat, result.TRA, result.ReadyToLaunch, result.Comments, result.Uuid, result.TimestampEnd }; // have to add every column item as they'll compose the object to be inserted
             valueRange.Values = new List<IList<object>> {objectList};
 
             var appendRequest = service.Spreadsheets.Values.Append(valueRange, SpreadsheetId, range);
@@ -61,7 +114,7 @@ namespace ETDv2.Services
             var appendResponse = appendRequest.Execute();
         }
 
-        static void UpdateEntry()
+        public void UpdateXlsEntry()
         {
             var range = ""; //have to input the row to modify from the interface!!!!
             var valueRange = new ValueRange();

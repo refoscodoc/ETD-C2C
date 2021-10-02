@@ -1,9 +1,16 @@
 import * as React from 'react';
-import ListItems from "./list-item";
+import AreaChart from "./area-chart";
+import LineChart from "./line-chart";
 
 const Dashboard = () => {
+
+    
     return(
         <>
+            <div className="upper-charts">
+                <AreaChart />
+                <LineChart />
+            </div>
         </>
     )
 }

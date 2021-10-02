@@ -1,6 +1,5 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using DomainModel;
 using ETDv2.DataAccessSqliteProvider;
 using ETDv2.DomainModel;
 using ETDv2.Services;

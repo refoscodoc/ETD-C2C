@@ -1,6 +1,6 @@
 using System;
 using System.Linq;
-using DomainModel.Model;
+using ETDv2.DomainModel.Model;
 using Microsoft.EntityFrameworkCore;
 
 namespace ETDv2.DataAccessSqliteProvider
@@ -31,13 +31,13 @@ namespace ETDv2.DataAccessSqliteProvider
         {
             ChangeTracker.DetectChanges();
 
-            updateUpdatedProperty<SourceInfo>();
-            updateUpdatedProperty<DataEventRecord>();
+            UpdateUpdatedProperty<SourceInfo>();
+            UpdateUpdatedProperty<DataEventRecord>();
 
             return base.SaveChanges();
         }
 
-        private void updateUpdatedProperty<T>() where T : class
+        private void UpdateUpdatedProperty<T>() where T : class
         {
             var modifiedSourceInfo =
                 ChangeTracker.Entries<T>()

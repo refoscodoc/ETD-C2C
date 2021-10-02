@@ -14,14 +14,20 @@ import LogItem from './log-item';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
+import 'material-icons/iconfont/material-icons.css';
+import LogAdd from "./log-add";
+
 const LogsView = ( {logs, history, actions} ) => {
     
     let [data, setData] = useState([]);
     const [error, setError] = React.useState(null);
     let [selected, setSelex] = useState({selected: null});
+    let [showState, changeState] = useState(false);
+    
+    console.log("show state: " + showState);
     
     useEffect(() => {
-        axios.get(`http://localhost:44384/api/SourceInfos`, {
+        axios.get(`http://localhost:44384/api/DataEventRecords`, {
             headers : {
                 mode: 'cors',
                 credentials: 'include',
@@ -34,13 +40,6 @@ const LogsView = ( {logs, history, actions} ) => {
 
     if (error) return `Error: ${error.message}`;
     
-    // for (let i=0; i<data.length; i++)
-    // {
-    //     console.log(data[i].sourceInfoId);
-    //     console.log(data[i].name);
-    //     selected = data[i];
-    // }
-    
     const setSelected = (item) => {
         if(selected == null) {
             setSelex(data[data.length-1]);
@@ -50,18 +49,31 @@ const LogsView = ( {logs, history, actions} ) => {
         console.log("clicked");
         console.log(selected.name);
     };
-
     
-    
+    const changeBool = () => {
+        if(showState === false) {
+            showState = true;
+            changeState(true);
+        } else {
+            showState = false;
+            changeState(false);
+        }
+        console.log(showState);
+    }
+        
     return(
         <>
             <div className="main-log-view-page">
                 <div className="main-logs-view">
                     {data.map(item => {
-                        return <LogItem item={item} setSelected={setSelected} key={item.sourceInfoId} />
+                        return <LogItem item={item} setSelected={setSelected} key={item.dataEventRecordId} />
                     })
                     }
+                    <div className="add-icon">
+                        <span className="material-icons md-48"  onClick={changeBool}>add_circle</span>
+                    </div>
                 </div>
+                <LogAdd showState={showState}/>
                 <ListDescription item={selected}/>
             </div>
         </>

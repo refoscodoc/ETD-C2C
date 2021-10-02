@@ -1,0 +1,27 @@
+0 agent
+1 TimestampStart
+2 Title
+3 Summary
+4 Link
+5 Source Type
+6 G Product
+
+7 Google Employees +++
+8 Other tar +++
+9 List +++
+10 Indicate +++
+11 Motivation +++
+
+12 TTP
+
+13 Other TTP +++
+
+14 Topics
+15 UAT
+16 TRA
+17 ready to launch
+18 Comments
+19 Products compromised:Play and people affected N/A via TTPs:Trojan
+20 Uuid
+21 TimestampEnd
+22 feedback +++ out of range

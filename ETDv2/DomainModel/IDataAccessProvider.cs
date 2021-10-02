@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using DomainModel.Model;
+using ETDv2.DomainModel.Model;
 
 namespace ETDv2.DomainModel
 {

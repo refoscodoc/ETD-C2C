@@ -11,7 +11,16 @@ const ListDescription = ({item}) => {
         <>
             <div className="list-description">
                 <h4>Timestamp Start: {item.timestamp}</h4>
-                <h3 className="description-box">Summary: {item.description}</h3>
+                <div className="agent-link">
+                    <p>Logged by: {item.agent}</p>
+                    <a href="{item.link}">Open Link</a>
+                </div>
+                <p className="description-box">Summary: {item.description}</p>
+                <p>Timestamp End: {item.timestampEnd}</p>
+                <div className="dropdown-items">
+                    <p>TTP: {item.ttp}</p>
+                    <p>TRA: {item.tra}</p>
+                </div>
             </div>
         </>
     )

@@ -2,9 +2,10 @@
 using System.Net;
 using System.Threading.Tasks;
 using ETDv2.Services;
+using ETDv2.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AspNetCoreMultipleProject.Controllers
+namespace ETDv2.Controllers
 {
     [Route("api/[controller]")]
     public class SourceInfosController : Controller

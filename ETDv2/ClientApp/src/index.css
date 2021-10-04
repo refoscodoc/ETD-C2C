@@ -185,6 +185,12 @@ code {
   right: 24px;
 }
 
+.delete-icon {
+  position: absolute;
+  bottom: 84px;
+  right: 24px;
+}
+
 .material-icons {
   font-size: 48px !important;
   cursor: pointer;
@@ -199,7 +205,7 @@ code {
   flex-direction: column;
   justify-content: space-between;
   padding: 12px;
-  height: 50vh;
+  height: 60vh;
   width: 50vw;
   z-index: 2;
   border-radius: 12px;
@@ -207,6 +213,24 @@ code {
   right: 72px;
   transition: 0.2s ease-in-out;
   
+  border: 2px solid #22222222;
+}
+
+.delete-box {
+  animation-name: fadeInDown;
+  animation-duration: 0.5s;
+  position: absolute;
+  background-color: lemonchiffon;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 12px;
+  z-index: 2;
+  border-radius: 12px;
+  bottom: 72px;
+  right: 72px;
+  transition: 0.2s ease-in-out;
+
   border: 2px solid #22222222;
 }
 
@@ -240,6 +264,10 @@ code {
   padding: 8px;
 }
 
+.log-add-box-comment {
+  padding: 8px;
+}
+
 .log-add-button {
   background-color: coral;
   width: 100%;
@@ -254,22 +282,43 @@ code {
   height: calc(100vh - 91px);
 }
 
+.dashboard-page {
+  display: flex;
+  flex-direction: row;
+  height: calc(100vh - 91px);
+}
+
+.dashboard-sidebar {
+  display: flex;
+  flex-direction: column;
+  background-color: #654654;
+  height: calc(100vh - 91px);
+  width: 250px;
+  padding: 24px;
+}
+
 .upper-charts {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: flex-start;
-  height: calc(100vh - 91px);
   background-color: beige;
+  width: 100%;
 }
 
 .area-chart {
-  height: 400px;
-  width: 30%;
+  height: 25vh;
+  width: 35%;
+  padding: 24px;
 }
 
 .line-chart {
-  height: 400px;
+  height: 25vh;
   width: 30%;
+  padding: 24px;
+}
+
+.datePicker {
+  margin-top: 24px !important;
 }
 

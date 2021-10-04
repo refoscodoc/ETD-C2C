@@ -19,32 +19,51 @@ const LogAdd = ({showState}) => {
     const [name, setName] = React.useState('');
     const [description, setDescription] = React.useState('');
     const [link, setLink] = React.useState('');
+    const [comment, setComment] = React.useState('');
     const [sourceType, setSourceType] = React.useState('');
     const [product, setProduct] = React.useState('');
     const [ttp, setTtp] = React.useState('');
     const [topics, setTopics] = React.useState('');
     const [uat, setUat] = React.useState('');
+    const [tra, setTra] = React.useState('');
 
-    const handleChange = (event) => {
+    const handleSourceChange = (event) => {
         setSourceType(event.target.value);
+    };
+    const handleProductChange = (event) => {
         setProduct(event.target.value);
+    };
+    const handleTtpChange = (event) => {
         setTtp(event.target.value);
+    };
+    const handleTopicsChange = (event) => {
         setTopics(event.target.value);
+    };
+    const handleUatChange = (event) => {
         setUat(event.target.value);
+    };
+    const handleTraChange = (event) => {
+        setTra(event.target.value);
     };
     
     async function sendNewObject () {
+        let timestampStart = Date.now();
         let newLog = {
             name: name,
             description: description,
+            timestamp: timestampStart,
+            agent: "landatalik",
             link: link,
             sourceType: sourceType,
-            product: product,
+            googleProduct: product,
             ttp: ttp,
             topics: topics,
-            uat: uat
+            uat: uat,
+            tra: tra,
+            comment: comment,
+            sourceInfoId: 81152
         }
-
+        console.log("trying to send a new one");
         let res = await axios.post('http://localhost:44384/api/DataEventRecords', newLog);
     }
 
@@ -69,7 +88,7 @@ const LogAdd = ({showState}) => {
                                         id="sourceType-simple-select"
                                         value={sourceType}
                                         label="Source Type"
-                                        onChange={handleChange}
+                                        onChange={handleSourceChange}
                                     >
                                         <MenuItem value={"News"}>News</MenuItem>
                                         <MenuItem value={"Blog"}>Blog</MenuItem>
@@ -94,7 +113,7 @@ const LogAdd = ({showState}) => {
                                         id="product-simple-select"
                                         value={product}
                                         label="Google Product"
-                                        onChange={handleChange}
+                                        onChange={handleProductChange}
                                     >
                                         <MenuItem value={"Play"}>Play</MenuItem>
                                         <MenuItem value={"gMail"}>gMail</MenuItem>
@@ -134,7 +153,7 @@ const LogAdd = ({showState}) => {
                                         id="ttp-simple-select"
                                         value={ttp}
                                         label="TTP"
-                                        onChange={handleChange}
+                                        onChange={handleTtpChange}
                                     >
                                         <MenuItem value={"SQL Injection"}>SQL Injection</MenuItem>
                                         <MenuItem value={"BotNet"}>BotNet</MenuItem>
@@ -171,7 +190,7 @@ const LogAdd = ({showState}) => {
                                         id="topics-simple-select"
                                         value={topics}
                                         label="Topics"
-                                        onChange={handleChange}
+                                        onChange={handleTopicsChange}
                                     >
                                         <MenuItem value={"Malware"}>Malware</MenuItem>
                                         <MenuItem value={"Bot Nets"}>Bot Nets</MenuItem>
@@ -225,7 +244,7 @@ const LogAdd = ({showState}) => {
                                         id="uat-simple-select"
                                         value={uat}
                                         label="UAT"
-                                        onChange={handleChange}
+                                        onChange={handleUatChange}
                                     >
                                         <MenuItem value={"Child Exploitation & Abuse"}>Child Exploitation & Abuse</MenuItem>
                                         <MenuItem value={"Terrorism & Violent Extremism"}>Terrorism & Violent Extremism</MenuItem>
@@ -251,8 +270,37 @@ const LogAdd = ({showState}) => {
                                 </FormControl>
                             </Box>
                         </Grid>
-                        <Button className="log-add-button" variant="contained" endIcon={<SendIcon />} onClick={sendNewObject}>Send</Button>
+                        <Grid item xs={4}>
+                            <Box sx={{ minWidth: 120 }}>
+                                <FormControl fullWidth>
+                                    <InputLabel id="ttp-simple-select-label">TRA</InputLabel>
+                                    <Select
+                                        labelId="ttp-simple-select-label"
+                                        id="ttp-simple-select"
+                                        value={tra}
+                                        label="TRA"
+                                        onChange={handleTraChange}
+                                    >
+                                        <MenuItem value={"Geopolitical dynamics"}>Geopolitical dynamics</MenuItem>
+                                        <MenuItem value={"Social unrest"}>Social unrest</MenuItem>
+                                        <MenuItem value={"Health"}>Health</MenuItem>
+                                        <MenuItem value={"Major civic events"}>Major civic events</MenuItem>
+                                        <MenuItem value={"Global perceptions of bias"}>Global perceptions of bias</MenuItem>
+                                        <MenuItem value={"Vulnerable or marginalized groups"}>Vulnerable or marginalized groups</MenuItem>
+                                        <MenuItem value={"Dangerous orgs"}>Dangerous orgs</MenuItem>
+                                        <MenuItem value={"Harmful misinformation"}>Harmful misinformation</MenuItem>
+                                        <MenuItem value={"Misuse of user data"}>Misuse of user data</MenuItem>
+                                        <MenuItem value={"Miscellaneous"}>Miscellaneous</MenuItem>
+                                    </Select>
+                                </FormControl>
+                            </Box>
+                        </Grid>
+                        
                     </Grid>
+
+                    <TextField className="log-add-box-comment" label="Comments"
+                               onChange={(event) => {setComment(event.target.value)}}/>
+                    <Button className="log-add-button" variant="contained" endIcon={<SendIcon />} onClick={sendNewObject}>Send</Button>
                 </div>
             </div>
         </>

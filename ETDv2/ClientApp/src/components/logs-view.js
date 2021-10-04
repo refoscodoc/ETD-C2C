@@ -1,6 +1,7 @@
 import * as React from 'react';
 import ListItemETD from "./log-item";
 import ListDescription from "./list-description";
+import DeleteWarning from "./delete-warning";
 import {useState, useEffect} from "react";
 
 import { bindActionCreators } from 'redux';
@@ -23,6 +24,7 @@ const LogsView = ( {logs, history, actions} ) => {
     const [error, setError] = React.useState(null);
     let [selected, setSelex] = useState({selected: null});
     let [showState, changeState] = useState(false);
+    let [deleteState, setDeleteState] = useState(false);
     
     console.log("show state: " + showState);
     
@@ -60,6 +62,17 @@ const LogsView = ( {logs, history, actions} ) => {
         }
         console.log(showState);
     }
+
+    const changeDeleteBool = () => {
+        if(deleteState === false) {
+            deleteState = true;
+            setDeleteState(true);
+        } else {
+            deleteState = false;
+            setDeleteState(false);
+        }
+        console.log(deleteState);
+    }
         
     return(
         <>
@@ -69,11 +82,15 @@ const LogsView = ( {logs, history, actions} ) => {
                         return <LogItem item={item} setSelected={setSelected} key={item.dataEventRecordId} />
                     })
                     }
+                    <div className="delete-icon">
+                        <span className="material-icons md-48"  onClick={changeDeleteBool}>delete</span>
+                    </div>
                     <div className="add-icon">
                         <span className="material-icons md-48"  onClick={changeBool}>add_circle</span>
                     </div>
                 </div>
                 <LogAdd showState={showState}/>
+                <DeleteWarning deleteState={deleteState} changeDeleteBool={changeDeleteBool} item={selected}/>
                 <ListDescription item={selected}/>
             </div>
         </>

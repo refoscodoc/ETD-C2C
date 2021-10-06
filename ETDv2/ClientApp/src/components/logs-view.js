@@ -26,8 +26,6 @@ const LogsView = ( {logs, history, actions} ) => {
     let [showState, changeState] = useState(false);
     let [deleteState, setDeleteState] = useState(false);
     
-    console.log("show state: " + showState);
-    
     useEffect(() => {
         axios.get(`http://localhost:44384/api/DataEventRecords`, {
             headers : {
@@ -44,12 +42,10 @@ const LogsView = ( {logs, history, actions} ) => {
     
     const setSelected = (item) => {
         if(selected == null) {
-            setSelex(data[data.length-1]);
+            setSelex(data[data.length - 1]);
         } else {
             setSelex(item);
         }
-        console.log("clicked");
-        console.log(selected.name);
     };
     
     const changeBool = () => {
@@ -60,7 +56,6 @@ const LogsView = ( {logs, history, actions} ) => {
             showState = false;
             changeState(false);
         }
-        console.log(showState);
     }
 
     const changeDeleteBool = () => {
@@ -71,7 +66,6 @@ const LogsView = ( {logs, history, actions} ) => {
             deleteState = false;
             setDeleteState(false);
         }
-        console.log(deleteState);
     }
         
     return(

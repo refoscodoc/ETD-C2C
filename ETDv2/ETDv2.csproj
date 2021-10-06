@@ -40,7 +40,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="ClientApp\src\resources" />
+      <Folder Include="ClientApp\src\resources\images" />
     </ItemGroup>
 
     <ItemGroup>

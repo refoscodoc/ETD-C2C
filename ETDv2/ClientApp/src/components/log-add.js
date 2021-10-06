@@ -47,7 +47,9 @@ const LogAdd = ({showState}) => {
     };
     
     async function sendNewObject () {
-        let timestampStart = Date.now();
+        // let timestampStart = Date.now();
+        let date = new Date();
+        let timestampStart = date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
         let newLog = {
             name: name,
             description: description,

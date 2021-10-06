@@ -106,7 +106,7 @@ namespace ETDv2.Services
             var range = $"{sheet}!B:F";
             var valueRange = new ValueRange();
 
-            var objectList = new List<object>() { result.Timestamp, result.Agent, result.Timestamp, result.Name, result.Description, result.Link, result.SourceType, result.GoogleProduct, null, null, null, null, null, result.TTP, null, result.Topics, result.Uat, result.TRA, result.ReadyToLaunch, result.Comments, null, result.Uuid, result.TimestampEnd }; // have to add every column item as they'll compose the object to be inserted
+            var objectList = new List<object>() { null, result.Agent, result.Timestamp, result.Name, result.Description, result.Link, result.SourceType, result.GoogleProduct, null, null, null, null, null, result.TTP, null, result.Topics, result.Uat, result.TRA, result.ReadyToLaunch, result.Comments, null, result.Uuid, result.TimestampEnd }; // have to add every column item as they'll compose the object to be inserted
             valueRange.Values = new List<IList<object>> {objectList};
 
             var appendRequest = service.Spreadsheets.Values.Append(valueRange, SpreadsheetId, range);

@@ -100,6 +100,10 @@ code {
   width: 30%;
 }
 
+.bar-timestamp {
+  margin: 0;
+}
+
 .date-stamp {
   display: flex;
   flex-direction: column;
